@@ -1,0 +1,40 @@
+| <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+</head>
+
+<body>
+    <H1>Simulador Financeiro</H1>
+    <h3>Calcule a economia com a implantação do sistema de sensores na sua plantação de café:</h3>
+    Área da plantação (em hectares): <br>
+    <input type="text" id="ipt_areaplantacao"> <br>
+    Produção de sacas anualmente: <br>
+    <input type="text" id="ipt_sacasano"> <br>
+    <button onclick="mostrar()">Calcular Economia com a Implantação do Sistema</button> <br>
+    <div id="div_msg"></div>
+
+</body>
+<script>
+    function mostrar() {
+        let areaplantacao = Number(ipt_areaplantacao.value);
+        let sacasano = Number(ipt_sacasano.value);
+        let custo_sensores = 10 * 4 * areaplantacao;
+        let gasto_agua_mediaporsaca = sacasano * 1200000//1kg de café gasta 20mil litros em sua produção, * 60=1200000
+        let tempo_retorno = (custo_sensores / (0.00011 * gasto_agua_mediaporsaca) * 12);
+        div_msg.innerHTML = `Benefícios e efeitos<br> <p>Levando em consideração os ${areaplantacao} hectares da plantação, o gasto de água chega próximo de ${gasto_agua_mediaporsaca}L anualmente, <br>
+        quantidade essa poderia ser reduzida em até 30% com o uso dos sensores de umidade de solo, que auxiliam no <BR> melhor manejo possível da água na sua plantação. 
+        Ou seja uma economia de até ${(gasto_agua_mediaporsaca * 0.3)}L e R$${(0.00011 * gasto_agua_mediaporsaca)} de água desperdiçada. <br>
+        <p> Além de toda a economia de água e gastos, os sensores serão responsáveis por beneficiar a qualidade e produtividade de <br>
+            até 75 sacas por hectare, ou seja, ${(75 * areaplantacao)} sacas, aumentando a produtividade e qualidade do seu produto. <br> <br> 
+            Custo de implantação dos sensores <br>
+            <p>Para a implantação do sistema de sensores de umidade será necessário um investimento de 10 sensores por hectare, para garantir<br>
+            precisão nas medidas e auxílio no seu manejo hídrico. O custo dos sensores gira em torno de apenas R$${(100 * areaplantacao)} no total, gerando um retorno financeiro <br>
+            e de recursos a partir de ${(tempo_retorno).toFixed(1)} meses, ou seja, em ${(tempo_retorno * 30).toFixed(0)} dias o investimento se paga e começa a tornar-se lucro.
+        `
+    }
+</script>
+</html>
